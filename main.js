@@ -1,14 +1,18 @@
 var prompt = require("prompt");
-var Word = require("./word.js")
+var Word = require("./word.js");
+var randomWord = require("random-word");
+//using a random word generator
+//instead of a preset word bank
 
 prompt.start();
+console.log(randomWord());
 
 var game = {
-  wordBank: "super cool dude",
+  // wordBank: "super cool dude",
   guessesRemaining: 10,
   currentWrd: null,
   startGame: function(wrd) {
-    this.currentWrd = new Word("super cool dude");
+    this.currentWrd = new Word(randomWord());
     this.currentWrd.getLets();
     this.keepPropmtingUser();
   },
@@ -36,6 +40,7 @@ var game = {
         self.keepPropmtingUser();
       } else if(self.guessesRemaining === 0) {
         console.log("Game over bro");
+        console.log("The word was " + self.currentWrd.word);
       } else {
         console.log(self.currentWrd.wordRender());
       }
