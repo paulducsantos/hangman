@@ -5,7 +5,6 @@ var randomWord = require("random-word");
 //instead of a preset word bank
 
 prompt.start();
-console.log(randomWord());
 
 var game = {
   // wordBank: "super cool dude",
