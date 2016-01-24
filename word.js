@@ -6,38 +6,37 @@ function Word (wrd) {
   this.found = false;
 
   this.getLets = function () {
-    for(var i = 0; i < word.length; i++) {
-      var newLetter = Letter(word[i]);
+    for(var i = 0; i < this.word.length; i++) {
+      this.lets[i] = new Letter(this.word[i]);
     }
   }
 
   this.checkIfLetterFound = function (guessLetter) {
     var whatToReturn = 0;
-    for (var i = 0; i < lets.length; i++) {
-      if (lets[i].charac === guessLetter) {
-        lets[i].appear = true;
+    for (var i = 0; i < this.lets.length; i++) {
+      if (this.lets[i].charac === guessLetter) {
+        this.lets[i].appear = true;
         whatToReturn++;
-        return whatToReturn;
       }
     }
+    return whatToReturn;
   }
 
   this.didWeFindTheWord = function () {
-    if (lets.every(function (curLet){
-      return lets.appear === true;
-    }) {
+    if (this.lets.every( (curLet, index) => {
+      return this.lets[index].appear === true;
+    }) === true) {
       this.found = true;
       return this.found;
     }
-    
   }
 
   this.wordRender = function() {
     var str = "";
-    for (var i = 0; i < lets.length; i++) {
-      str.push(lets[i].letterRender);
-      return str;
+    for (var i = 0; i < this.lets.length; i++) {
+      str += this.lets[i].letterRender();
     }
+    return str;
   }
 }
 

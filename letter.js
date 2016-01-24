@@ -1,11 +1,11 @@
-var Letter = function (let) {
+function Letter (let) {
   this.charac = let;
   this.appear = false;
   this.letterRender = function () {
-    if (!appear) {
+    if (this.appear === false) {
       return "_";
     } else {
-      return charac;
+      return this.charac;
     }
   }
 }
